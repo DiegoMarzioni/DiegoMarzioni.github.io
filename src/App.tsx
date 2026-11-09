@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react';
 import { achievements, education, experience, languages, profile, projects, skills, ui, type Lang } from './data';
 import { useKonami, useLang, usePrefersReducedMotion, useReveal, useRoute, useTypewriter } from './hooks';
-import { CvPage } from './CvPage';
+import { CvPage, cvFile } from './CvPage';
 import { enableSfxNow, sfx, useSound } from './sound';
 
 export function App() {
@@ -150,7 +150,7 @@ function Portfolio({ lang, setLang }: Props) {
               <a href="#projects" className="btn primary">
                 ▶ {t(ui.hero.cta)}
               </a>
-              <a href="#/cv" className="btn">
+              <a href={cvFile(lang)} className="btn" download>
                 ⤓ {t(ui.hero.cv)}
               </a>
               <a href={profile.github} className="btn icon" target="_blank" rel="noreferrer" aria-label="GitHub">

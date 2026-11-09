@@ -13,6 +13,9 @@ const headings = {
   languages: { en: 'Languages', es: 'Idiomas' },
 };
 
+/** Pre-generated PDFs in public/cv (printed from this page with headless Edge). */
+export const cvFile = (lang: Lang) => `${import.meta.env.BASE_URL}cv/Diego-Marzioni-CV-${lang.toUpperCase()}.pdf`;
+
 /** Printable, ATS-friendly CV generated from the same data as the portfolio. */
 export function CvPage({ lang, setLang }: Props) {
   const t = (s: Record<Lang, string>) => s[lang];
@@ -27,11 +30,10 @@ export function CvPage({ lang, setLang }: Props) {
               {l.toUpperCase()}
             </button>
           ))}
-          <button type="button" className="print" onClick={() => window.print()}>
+          <a className="print" href={cvFile(lang)} download>
             ⤓ {t(ui.labels.print)}
-          </button>
+          </a>
         </div>
-        <p className="cv-hint">{t(ui.labels.printHint)}</p>
       </div>
 
       <article className="cv">
