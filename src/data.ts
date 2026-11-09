@@ -28,7 +28,7 @@ export type Experience = {
 export const experience: Experience[] = [
   {
     role: { en: 'Front-end Developer', es: 'Desarrollador Front-end' },
-    company: 'PMG Consulting US',
+    company: 'PMG Global Advisors',
     period: { en: 'Mar 2026 — Present', es: 'Mar 2026 — Actualidad' },
     place: { en: 'Remote · Full-time', es: 'Remoto · Jornada completa' },
     current: true,

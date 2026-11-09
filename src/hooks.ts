@@ -4,6 +4,9 @@ import type { Lang } from './data';
 const LANG_KEY = 'dm.lang';
 
 function readLang(): Lang {
+  // ?lang=es / ?lang=en wins (shareable links, PDF generation)
+  const fromUrl = new URLSearchParams(window.location.search).get('lang');
+  if (fromUrl === 'en' || fromUrl === 'es') return fromUrl;
   try {
     const saved = localStorage.getItem(LANG_KEY);
     if (saved === 'en' || saved === 'es') return saved;
