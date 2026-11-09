@@ -139,7 +139,7 @@ function Portfolio({ lang, setLang }: Props) {
               </div>
               <div>
                 <dt>{t(ui.hero.guildLabel)}</dt>
-                <dd>PMG Global Advisors</dd>
+                <dd>PMG Consulting US</dd>
               </div>
               <div>
                 <dt>{t(ui.hero.baseLabel)}</dt>
