@@ -1056,3 +1056,17 @@ main {
     max-width: none;
   }
 }
+
+.sound-btn {
+  background: none;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 3px 8px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  line-height: 1.4;
+}
+
+.sound-btn[aria-pressed='false'] {
+  opacity: 0.55;
+}

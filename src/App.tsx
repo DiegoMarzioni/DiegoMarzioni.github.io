@@ -2,6 +2,7 @@ import { useCallback, useState } from 'react';
 import { achievements, education, experience, languages, profile, projects, skills, ui, type Lang } from './data';
 import { useKonami, useLang, usePrefersReducedMotion, useReveal, useRoute, useTypewriter } from './hooks';
 import { CvPage } from './CvPage';
+import { enableSfxNow, sfx, useSound } from './sound';
 
 export function App() {
   const [lang, setLang] = useLang();
@@ -15,7 +16,17 @@ function LangToggle({ lang, setLang }: Props) {
   return (
     <div className="lang" role="group" aria-label="Language">
       {(['en', 'es'] as const).map((l) => (
-        <button key={l} type="button" className={lang === l ? 'active' : ''} aria-pressed={lang === l} onClick={() => setLang(l)}>
+        <button
+          key={l}
+          type="button"
+          data-sfx="none"
+          className={lang === l ? 'active' : ''}
+          aria-pressed={lang === l}
+          onClick={() => {
+            if (l !== lang) sfx.coin();
+            setLang(l);
+          }}
+        >
           {l.toUpperCase()}
         </button>
       ))}
@@ -42,7 +53,13 @@ function Portfolio({ lang, setLang }: Props) {
   const [turbo, setTurbo] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   useReveal([lang]);
-  useKonami(useCallback(() => setTurbo((v) => !v), []));
+  const [soundOn, setSoundOn] = useSound();
+  useKonami(
+    useCallback(() => {
+      sfx.powerUp();
+      setTurbo((v) => !v);
+    }, []),
+  );
 
   const nav = [
     ['about', ui.nav.about],
@@ -79,6 +96,23 @@ function Portfolio({ lang, setLang }: Props) {
           </li>
         </ul>
         <LangToggle lang={lang} setLang={setLang} />
+        <button
+          type="button"
+          className="sound-btn"
+          data-sfx="none"
+          aria-pressed={soundOn}
+          aria-label={soundOn ? 'Mute sound effects' : 'Enable sound effects'}
+          title={soundOn ? 'Sound: on' : 'Sound: off'}
+          onClick={() => {
+            if (!soundOn) {
+              enableSfxNow();
+              sfx.coin();
+            }
+            setSoundOn(!soundOn);
+          }}
+        >
+          {soundOn ? '🔊' : '🔇'}
+        </button>
       </nav>
 
       <main id="top">
@@ -137,7 +171,7 @@ function Portfolio({ lang, setLang }: Props) {
               HP <i style={{ width: '100%' }} />
             </span>
           </div>
-          <a href="#about" className="press-start">
+          <a href="#about" className="press-start" data-sfx="none" onClick={() => sfx.start()}>
             {t(ui.hero.start)}
           </a>
         </section>
