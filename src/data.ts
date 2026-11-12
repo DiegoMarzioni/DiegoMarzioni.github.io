@@ -97,6 +97,17 @@ export const projects: Project[] = [
     status: 'private',
   },
   {
+    name: 'Full Stack Monorepo Starter',
+    tagline: { en: 'Open-source template · web + mobile', es: 'Plantilla open source · web + mobile' },
+    description: {
+      en: 'The base I start new projects from: a Turborepo + pnpm monorepo with a Next.js 15 web app and an Expo app sharing a typed package (zod schemas tested with Vitest). CI on GitHub Actions.',
+      es: 'La base desde la que arranco proyectos nuevos: monorepo con Turborepo + pnpm, web en Next.js 15 y app en Expo que comparten un paquete tipado (esquemas zod testeados con Vitest). CI con GitHub Actions.',
+    },
+    stack: ['Turborepo', 'pnpm', 'Next.js 15', 'Expo', 'Zod', 'Vitest'],
+    repo: 'https://github.com/DiegoMarzioni/fullstack-monorepo-starter',
+    status: 'shipped',
+  },
+  {
     name: 'DevCore',
     tagline: { en: 'Online courses platform', es: 'Plataforma de cursos online' },
     description: {
